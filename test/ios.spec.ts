@@ -172,3 +172,105 @@ test("iPhone WebKit keeps icon labels clipped and the plate readable", async ({ 
   expectClipped(await hiddenBox(page, "[data-slot='toast-close'] [data-slot='visually-hidden']"));
   await shot(page, "iphone-after-toast.png");
 });
+
+test("iPhone menu, checkbox, toast, and stepper keep their boxes", async ({ page }) => {
+  await page.goto("/gallery.html");
+
+  const trigger = page.getByRole("button", { name: "Parts" });
+  await trigger.scrollIntoViewIfNeeded();
+  await page.evaluate(() => window.scrollBy(0, 140));
+  await trigger.click();
+  await expect.poll(async () => {
+    return page.evaluate(() => {
+      const content = document.querySelector("[data-slot='navigation-menu-content']");
+      const button = document.querySelector("[data-slot='navigation-menu-trigger']");
+      if (!(content instanceof HTMLElement) || !(button instanceof HTMLElement)) return -1;
+      return content.getBoundingClientRect().top - button.getBoundingClientRect().bottom;
+    });
+  }).toBeGreaterThanOrEqual(0);
+  await shot(page, "iphone-after-menu.png");
+  await page.keyboard.press("Escape");
+
+  const select = page.locator("cl-select button");
+  await select.scrollIntoViewIfNeeded();
+  await select.click();
+  await expect.poll(async () => {
+    return page.evaluate(() => {
+      const content = document.querySelector("cl-select-content");
+      const button = document.querySelector("cl-select button");
+      if (!(content instanceof HTMLElement) || !(button instanceof HTMLElement)) return -1;
+      if (content.hidden) return -1;
+      return content.getBoundingClientRect().top - button.getBoundingClientRect().bottom;
+    });
+  }).toBeGreaterThanOrEqual(0);
+  await page.keyboard.press("Escape");
+
+  await page.locator("label", { hasText: "Seal" }).click();
+  const glyph = await page.locator("cl-checkbox[value='seal']").evaluate(el => {
+    const indicator = el.querySelector("[data-slot='checkbox-indicator']");
+    if (!(indicator instanceof HTMLElement)) return null;
+    const box = el.getBoundingClientRect();
+    const mark = indicator.getBoundingClientRect();
+    const before = getComputedStyle(indicator, "::before");
+    return {
+      dx: Math.abs(mark.x + mark.width / 2 - (box.x + box.width / 2)),
+      dy: Math.abs(mark.y + mark.height / 2 - (box.y + box.height / 2)),
+      beforeWidth: parseFloat(before.width),
+      background: getComputedStyle(indicator).backgroundColor,
+    };
+  });
+  expect(glyph).toBeTruthy();
+  expect(glyph!.dx).toBeLessThan(4);
+  expect(glyph!.dy).toBeLessThan(4);
+  expect(glyph!.beforeWidth).toBeGreaterThan(0);
+  expect(["rgba(0, 0, 0, 0)", "transparent"]).toContain(glyph!.background);
+  await page.locator("cl-checkbox[value='seal']").scrollIntoViewIfNeeded();
+  await shot(page, "iphone-after-checkbox.png");
+  const indeterminate = await page.locator("cl-checkbox[value='seal']").evaluate(el => {
+    const indicator = el.querySelector("[data-slot='checkbox-indicator']");
+    if (!(indicator instanceof HTMLElement)) return null;
+    indicator.setAttribute("data-indeterminate", "");
+    const box = el.getBoundingClientRect();
+    const mark = indicator.getBoundingClientRect();
+    const before = getComputedStyle(indicator, "::before");
+    return {
+      dx: Math.abs(mark.x + mark.width / 2 - (box.x + box.width / 2)),
+      dy: Math.abs(mark.y + mark.height / 2 - (box.y + box.height / 2)),
+      icon: before.getPropertyValue("--ui-icon"),
+    };
+  });
+  expect(indeterminate).toBeTruthy();
+  expect(indeterminate!.dx).toBeLessThan(4);
+  expect(indeterminate!.dy).toBeLessThan(4);
+  expect(indeterminate!.icon).toContain("M5 12h14");
+  await page.locator("cl-checkbox[value='seal'] [data-slot='checkbox-indicator']").evaluate(el => {
+    el.removeAttribute("data-indeterminate");
+  });
+
+  await page.locator("cl-number-input").scrollIntoViewIfNeeded();
+  const borderTop = await page.locator("cl-number-input input").evaluate(el => parseFloat(getComputedStyle(el).borderTopWidth));
+  const borderBottom = await page.locator("cl-number-input input").evaluate(el => parseFloat(getComputedStyle(el).borderBottomWidth));
+  expect(borderTop).toBeGreaterThan(0);
+  expect(borderBottom).toBeGreaterThan(0);
+  await shot(page, "iphone-after-stepper.png");
+
+  await page.locator("#post-note").click();
+  const toast = page.locator("cl-toast");
+  await expect(toast).toBeVisible();
+  const inset = await toast.evaluate(el => {
+    const rect = el.getBoundingClientRect();
+    return {
+      x: rect.x,
+      right: window.innerWidth - rect.right,
+      bottom: window.innerHeight - rect.bottom,
+      pad: parseFloat(getComputedStyle(el).paddingLeft),
+      border: parseFloat(getComputedStyle(el).borderLeftWidth),
+    };
+  });
+  expect(inset.x).toBeGreaterThanOrEqual(8);
+  expect(inset.right).toBeGreaterThanOrEqual(8);
+  expect(inset.bottom).toBeGreaterThanOrEqual(8);
+  expect(inset.pad).toBeGreaterThan(0);
+  expect(inset.border).toBeGreaterThan(0);
+  await shot(page, "iphone-after-toast.png");
+});
