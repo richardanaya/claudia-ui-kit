@@ -652,10 +652,14 @@ input[data-slot="input"] {
     padding: 0.55rem 0.7rem 0.7rem;
   }
 
-  [data-slot="cl-sheet-margin"] {
+  [data-slot="cl-sheet-margin"],
+  [data-slot="cl-sheet-margin"][data-side="start"],
+  [data-slot="cl-sheet-margin"][data-side="end"] {
     position: static;
     writing-mode: horizontal-tb;
+    text-orientation: mixed;
     transform: none;
+    rotate: none;
     letter-spacing: 0.08em;
     text-align: center;
     white-space: normal;

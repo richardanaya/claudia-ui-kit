@@ -6,10 +6,26 @@ export default defineConfig({
   fullyParallel: false,
   retries: 0,
   use: {
-    ...devices["Desktop Chrome"],
     baseURL: "http://127.0.0.1:4173",
-    viewport: { width: 1280, height: 900 },
   },
+  projects: [
+    {
+      name: "chromium",
+      testIgnore: "**/ios.spec.ts",
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1280, height: 900 },
+      },
+    },
+    {
+      name: "webkit-iphone",
+      testMatch: "**/ios.spec.ts",
+      use: {
+        ...devices["iPhone 13"],
+        browserName: "webkit",
+      },
+    },
+  ],
   webServer: [
     {
       command: "npm run dev",

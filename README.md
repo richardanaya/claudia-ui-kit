@@ -75,3 +75,7 @@ npm run check     # types, unit tests, library build, CDN bundle, Pages site, Pl
 ```
 
 The demo poster is a release sheet for this kit. It does not reproduce another project's copy or photograph.
+
+## License
+
+[MIT](LICENSE). Copyright (c) 2026 Richard Anaya.
