@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claudia UI Kit — gallery</title>
+  </head>
+  <body>
+    <div class="page">
+      <nav class="nav" aria-label="Sheets">
+        <a href="/">Fig. 00 · Release sheet</a>
+        <a href="/gallery.html" aria-current="page">Fig. 01 · Gallery</a>
+      </nav>
+      <cl-sheet label="Claudia UI Kit component gallery">
+        <cl-crosshair corner="nw"></cl-crosshair>
+        <cl-crosshair corner="ne"></cl-crosshair>
+        <cl-crosshair corner="sw"></cl-crosshair>
+        <cl-crosshair corner="se"></cl-crosshair>
+        <cl-sheet-margin side="start">Gallery · parts and controls</cl-sheet-margin>
+        <cl-sheet-margin side="end">Rev. 0.1.0</cl-sheet-margin>
+        <header class="mast">
+          <h1 class="brand"><cl-star></cl-star> Gallery</h1>
+          <p class="kicker">Specimens<br />Same ink, same paper</p>
+          <cl-sheet-meta number="002" sheet="1" of="1" revision="0.1.0" date="2026-11-21"></cl-sheet-meta>
+        </header>
+        <cl-ruler from="0" to="12"></cl-ruler>
+        <div class="stack">
+          <section class="specimen">
+            <h2>00 · Tokens</h2>
+            <div class="swatches">
+              <div class="swatch" style="background: var(--cl-paper)"><span>Paper</span></div>
+              <div class="swatch" style="background: var(--cl-ink)"><span>Ink</span></div>
+              <div class="swatch" style="background: var(--cl-orange)"><span>Orange</span></div>
+            </div>
+            <p class="kicker">Inter Tight for numerals. IBM Plex Mono for the plate notes.</p>
+          </section>
+          <section class="specimen">
+            <h2>01 · Marks</h2>
+            <div class="row">
+              <cl-star></cl-star>
+              <cl-pill variant="orange">Filled orange</cl-pill>
+              <cl-pill variant="ink">Filled ink</cl-pill>
+              <cl-badge variant="outline">Outline badge</cl-badge>
+              <cl-tag>Tag chip</cl-tag>
+            </div>
+            <cl-version-hero value="0.1.0"></cl-version-hero>
+          </section>
+          <section class="specimen">
+            <h2>02 · Plate hardware</h2>
+            <cl-barcode value="CLAUDIA"></cl-barcode>
+            <div class="row">
+              <cl-qr value="claudia-ui-kit"></cl-qr>
+              <cl-seal text="CLAUDIA UI KIT · GALLERY · "></cl-seal>
+            </div>
+          </section>
+          <section class="specimen">
+            <h2>03 · Button, field, toggle</h2>
+            <div class="row">
+              <cl-button>
+                <button type="button" data-variant="orange" id="mark-button">Mark the plate</button>
+              </cl-button>
+              <cl-button>
+                <button type="button" data-variant="ink">File it</button>
+              </cl-button>
+              <cl-button>
+                <button type="button">Outline</button>
+              </cl-button>
+            </div>
+            <p id="mark-log" class="log" aria-live="polite"></p>
+            <cl-field>
+              <cl-field-label>Plate title</cl-field-label>
+              <cl-input>
+                <input name="title" autocomplete="off" />
+              </cl-input>
+            </cl-field>
+            <cl-toggle-group aria-label="Ink weight">
+              <cl-toggle value="regular">
+                <button type="button">Regular</button>
+              </cl-toggle>
+              <cl-toggle value="bold">
+                <button type="button">Bold</button>
+              </cl-toggle>
+            </cl-toggle-group>
+          </section>
+          <section class="specimen">
+            <h2>04 · Tabs, dialog, tooltip</h2>
+            <cl-tabs default-value="tokens">
+              <cl-tabs-list aria-label="Kit sections">
+                <cl-tabs-tab value="tokens"><button type="button">Tokens</button></cl-tabs-tab>
+                <cl-tabs-tab value="parts"><button type="button">Parts</button></cl-tabs-tab>
+              </cl-tabs-list>
+              <cl-tabs-panel value="tokens">Color, type, and the eight-point star.</cl-tabs-panel>
+              <cl-tabs-panel value="parts">Sheet, callout, seal, and barcode.</cl-tabs-panel>
+            </cl-tabs>
+            <div class="row">
+              <cl-dialog>
+                <cl-dialog-trigger>
+                  <button type="button">Open plate</button>
+                </cl-dialog-trigger>
+                <cl-dialog-backdrop hidden></cl-dialog-backdrop>
+                <cl-dialog-content hidden>
+                  <cl-dialog-title>Plate notes</cl-dialog-title>
+                  <cl-dialog-description>Focus stays inside until the plate is closed.</cl-dialog-description>
+                  <cl-dialog-close>
+                    <button type="button">Close</button>
+                  </cl-dialog-close>
+                </cl-dialog-content>
+              </cl-dialog>
+              <cl-tooltip>
+                <cl-tooltip-trigger>
+                  <button type="button">Hint</button>
+                </cl-tooltip-trigger>
+                <cl-tooltip-content>Eight-point star</cl-tooltip-content>
+              </cl-tooltip>
+            </div>
+          </section>
+        </div>
+      </cl-sheet>
+    </div>
+    <script type="module" src="/main.ts"></script>
+    <script type="module">
+      document.querySelector("#mark-button")?.addEventListener("click", () => {
+        const log = document.querySelector("#mark-log");
+        if (log) log.textContent = "Plate marked";
+      });
+    </script>
+  </body>
+</html>
