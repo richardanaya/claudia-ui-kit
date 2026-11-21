@@ -36,6 +36,14 @@ The Pages build publishes a self-contained ESM bundle. The script brings the UI 
 
 Pin a release at `https://richardanaya.github.io/claudia-ui-kit/cdn/v0.1.0/claudia-ui.js` and the matching `.css`. The demo sheets are on the same site: `/`, `/gallery.html`, `/app.html`. `cdn-test.html` loads only those CDN files.
 
+## Responsive
+
+Parts stay inside the viewport. Each `[data-slot]` uses `min-width: 0` and `max-width: 100%`, and rows (`cl-toolbar`, `cl-menubar`, `cl-pagination`, `cl-breadcrumb`, segmented controls) wrap. Type, space, and the version hero use `clamp()`, so the release numerals shrink on a phone and keep their desktop size.
+
+Under 720px the sheet drops its side gutters. The vertical margin notes become a top strip and a bottom strip, and the frame padding tightens so the plate is not a narrow column inside a wide border. Callout labels sit under the figure instead of running off it, and the ruler keeps every tick but labels every fourth one.
+
+Popovers, menus, selects, drawers, and toasts use `max-width: calc(100vw - 1rem)`. Dialogs and alert dialogs become a full-width bottom sheet. `src/anchor.ts` flips a popup above its trigger when that side has more room, then clamps it to an 8px margin. Interactive controls are at least 44px tall on a narrow screen.
+
 ## Parts
 
 `cl-sheet`, `cl-sheet-meta`, `cl-sheet-margin`, `cl-ruler`, `cl-crosshair`, `cl-star`, `cl-callout`, `cl-figure`, `cl-figure-media`, `cl-figure-caption`, `cl-version-hero`, `cl-spec-table`, `cl-spec-row`, `cl-spec-cell`, `cl-spec-label`, `cl-spec-value`, `cl-pill`, `cl-badge`, `cl-tag`, `cl-change-list`, `cl-change-item`, `cl-change-index`, `cl-change-title`, `cl-change-body`, `cl-barcode`, `cl-qr`, `cl-seal`, `cl-button`, `cl-field`, `cl-field-label`, `cl-field-description`, `cl-field-error`, `cl-input`, `cl-input-group`, `cl-input-clear`, `cl-toggle`, `cl-toggle-group`, `cl-tabs`, `cl-tabs-list`, `cl-tabs-tab`, `cl-tabs-panel`, `cl-dialog`, `cl-dialog-trigger`, `cl-dialog-backdrop`, `cl-dialog-content`, `cl-dialog-title`, `cl-dialog-description`, `cl-dialog-close`, `cl-tooltip`, `cl-tooltip-trigger`, `cl-tooltip-content`.
