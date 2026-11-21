@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claudia UI Kit — gallery</title>
+  </head>
+  <body>
+    <div class="page">
+      <nav class="nav" aria-label="Sheets">
+        <a href="./">Fig. 00 · Release sheet</a>
+        <a href="./gallery.html" aria-current="page">Fig. 01 · Gallery</a>
+        <a href="./app.html">Fig. 02 · App</a>
+      </nav>
+      <cl-sheet label="Claudia UI Kit component gallery">
+        <cl-crosshair corner="nw"></cl-crosshair>
+        <cl-crosshair corner="ne"></cl-crosshair>
+        <cl-crosshair corner="sw"></cl-crosshair>
+        <cl-crosshair corner="se"></cl-crosshair>
+        <cl-sheet-margin side="start">Gallery · parts and controls</cl-sheet-margin>
+        <cl-sheet-margin side="end">Rev. 0.1.0</cl-sheet-margin>
+        <header class="mast">
+          <h1 class="brand"><cl-star></cl-star> Gallery</h1>
+          <p class="kicker">Specimens<br />Same ink, same paper</p>
+          <cl-sheet-meta number="002" sheet="1" of="1" revision="0.1.0" date="2026-11-21"></cl-sheet-meta>
+        </header>
+        <cl-ruler from="0" to="12"></cl-ruler>
+        <div class="stack">
+          <section class="specimen">
+            <h2>00 · Tokens</h2>
+            <div class="swatches">
+              <div class="swatch" style="background: var(--cl-paper)"><span>Paper</span></div>
+              <div class="swatch" style="background: var(--cl-ink)"><span>Ink</span></div>
+              <div class="swatch" style="background: var(--cl-orange)"><span>Orange</span></div>
+            </div>
+            <p class="kicker">Inter Tight for numerals. IBM Plex Mono for the plate notes.</p>
+          </section>
+          <section class="specimen">
+            <h2>01 · Marks</h2>
+            <div class="row">
+              <cl-star></cl-star>
+              <cl-pill variant="orange">Filled orange</cl-pill>
+              <cl-pill variant="ink">Filled ink</cl-pill>
+              <cl-badge variant="outline">Outline badge</cl-badge>
+              <cl-tag>Tag chip</cl-tag>
+            </div>
+            <cl-version-hero value="0.1.0"></cl-version-hero>
+          </section>
+          <section class="specimen">
+            <h2>02 · Plate hardware</h2>
+            <cl-barcode value="CLAUDIA"></cl-barcode>
+            <div class="row">
+              <cl-qr value="claudia-ui-kit"></cl-qr>
+              <cl-seal text="CLAUDIA UI KIT · GALLERY · "></cl-seal>
+            </div>
+          </section>
+          <section class="specimen">
+            <h2>03 · Button, field, toggle</h2>
+            <div class="row">
+              <cl-button>
+                <button type="button" data-variant="orange" id="mark-button">Mark the plate</button>
+              </cl-button>
+              <cl-button>
+                <button type="button" data-variant="ink">File it</button>
+              </cl-button>
+              <cl-button>
+                <button type="button">Outline</button>
+              </cl-button>
+            </div>
+            <p id="mark-log" class="log" aria-live="polite"></p>
+            <cl-field>
+              <cl-field-label>Plate title</cl-field-label>
+              <cl-input>
+                <input name="title" autocomplete="off" />
+              </cl-input>
+            </cl-field>
+            <cl-toggle-group aria-label="Ink weight">
+              <cl-toggle value="regular">
+                <button type="button">Regular</button>
+              </cl-toggle>
+              <cl-toggle value="bold">
+                <button type="button">Bold</button>
+              </cl-toggle>
+            </cl-toggle-group>
+          </section>
+          <section class="specimen">
+            <h2>04 · Tabs, dialog, tooltip</h2>
+            <cl-tabs default-value="tokens">
+              <cl-tabs-list aria-label="Kit sections">
+                <cl-tabs-tab value="tokens"><button type="button">Tokens</button></cl-tabs-tab>
+                <cl-tabs-tab value="parts"><button type="button">Parts</button></cl-tabs-tab>
+              </cl-tabs-list>
+              <cl-tabs-panel value="tokens">Color, type, and the eight-point star.</cl-tabs-panel>
+              <cl-tabs-panel value="parts">Sheet, callout, seal, and barcode.</cl-tabs-panel>
+            </cl-tabs>
+            <div class="row">
+              <cl-dialog>
+                <cl-dialog-trigger>
+                  <button type="button">Open plate</button>
+                </cl-dialog-trigger>
+                <cl-dialog-backdrop hidden></cl-dialog-backdrop>
+                <cl-dialog-content hidden>
+                  <cl-dialog-title>Plate notes</cl-dialog-title>
+                  <cl-dialog-description>Focus stays inside until the plate is closed.</cl-dialog-description>
+                  <cl-dialog-close>
+                    <button type="button">Close</button>
+                  </cl-dialog-close>
+                </cl-dialog-content>
+              </cl-dialog>
+              <cl-tooltip>
+                <cl-tooltip-trigger>
+                  <button type="button">Hint</button>
+                </cl-tooltip-trigger>
+                <cl-tooltip-content>Eight-point star</cl-tooltip-content>
+              </cl-tooltip>
+            </div>
+          </section>
+          <section class="specimen" id="forms">
+            <h2>05 · Forms</h2>
+            <cl-checkbox-group aria-label="Marks">
+              <label><cl-checkbox value="star"><cl-checkbox-indicator></cl-checkbox-indicator></cl-checkbox> Star</label>
+              <label><cl-checkbox value="seal"><cl-checkbox-indicator></cl-checkbox-indicator></cl-checkbox> Seal</label>
+            </cl-checkbox-group>
+            <cl-radio-group aria-label="Weight" value="regular">
+              <label><cl-radio value="regular"><cl-radio-indicator></cl-radio-indicator></cl-radio> Regular</label>
+              <label><cl-radio value="bold"><cl-radio-indicator></cl-radio-indicator></cl-radio> Bold weight</label>
+            </cl-radio-group>
+            <label>Published <cl-switch aria-label="Published"><cl-switch-thumb></cl-switch-thumb></cl-switch></label>
+            <cl-slider aria-label="Contrast" default-value="40">
+              <cl-slider-control>
+                <cl-slider-track>
+                  <cl-slider-indicator></cl-slider-indicator>
+                  <cl-slider-thumb></cl-slider-thumb>
+                </cl-slider-track>
+              </cl-slider-control>
+            </cl-slider>
+            <cl-select aria-label="Paper">
+              <cl-select-trigger><button type="button"><cl-select-value>Warm</cl-select-value></button></cl-select-trigger>
+              <cl-select-content hidden>
+                <cl-select-item value="warm">Warm</cl-select-item>
+                <cl-select-item value="ink">Ink</cl-select-item>
+              </cl-select-content>
+            </cl-select>
+            <cl-combobox aria-label="City">
+              <cl-combobox-input><input aria-label="City" placeholder="City" /></cl-combobox-input>
+              <cl-combobox-content hidden>
+                <cl-combobox-item value="Lisbon">Lisbon</cl-combobox-item>
+                <cl-combobox-item value="Kyoto">Kyoto</cl-combobox-item>
+              </cl-combobox-content>
+            </cl-combobox>
+            <cl-autocomplete aria-label="Glyph">
+              <cl-autocomplete-input><input aria-label="Glyph" /></cl-autocomplete-input>
+              <cl-autocomplete-content hidden>
+                <cl-autocomplete-item value="Star">Star</cl-autocomplete-item>
+                <cl-autocomplete-item value="Seal">Seal</cl-autocomplete-item>
+              </cl-autocomplete-content>
+            </cl-autocomplete>
+            <cl-listbox aria-label="Plate size">
+              <cl-listbox-item value="a4">A4</cl-listbox-item>
+              <cl-listbox-item value="a3">A3</cl-listbox-item>
+            </cl-listbox>
+            <cl-segmented-control aria-label="Finish" value="matte">
+              <cl-segmented-control-item value="matte">Matte</cl-segmented-control-item>
+              <cl-segmented-control-item value="gloss">Gloss</cl-segmented-control-item>
+            </cl-segmented-control>
+            <cl-number-input aria-label="Copies" value="2">
+              <cl-number-input-group>
+                <cl-number-input-decrement><button type="button">−</button></cl-number-input-decrement>
+                <cl-number-input-control><input aria-label="Copies" /></cl-number-input-control>
+                <cl-number-input-increment><button type="button">+</button></cl-number-input-increment>
+              </cl-number-input-group>
+            </cl-number-input>
+            <cl-password-input>
+              <input type="password" aria-label="Passphrase" value="plate" />
+              <cl-password-input-toggle><button type="button">Show</button></cl-password-input-toggle>
+            </cl-password-input>
+            <cl-otp-input aria-label="One-time code" length="4"></cl-otp-input>
+            <cl-file-input aria-label="Plate file">
+              <cl-file-input-trigger><button type="button">Choose file</button></cl-file-input-trigger>
+              <cl-file-input-list></cl-file-input-list>
+            </cl-file-input>
+            <cl-textarea>
+              <textarea aria-label="Notes" rows="2"></textarea>
+            </cl-textarea>
+            <cl-rating aria-label="Plate score" max="5">
+              <cl-rating-item index="1"><cl-rating-radio value="1">1</cl-rating-radio></cl-rating-item>
+              <cl-rating-item index="2"><cl-rating-radio value="2">2</cl-rating-radio></cl-rating-item>
+              <cl-rating-item index="3"><cl-rating-radio value="3">3</cl-rating-radio></cl-rating-item>
+              <cl-rating-item index="4"><cl-rating-radio value="4">4</cl-rating-radio></cl-rating-item>
+              <cl-rating-item index="5"><cl-rating-radio value="5">5</cl-rating-radio></cl-rating-item>
+            </cl-rating>
+          </section>
+          <section class="specimen" id="overlays">
+            <h2>06 · Overlays</h2>
+            <div class="row">
+              <cl-alert-dialog>
+                <cl-alert-dialog-trigger><button type="button">Confirm scrap</button></cl-alert-dialog-trigger>
+                <cl-alert-dialog-backdrop hidden></cl-alert-dialog-backdrop>
+                <cl-alert-dialog-content hidden>
+                  <cl-alert-dialog-title>Scrap this plate?</cl-alert-dialog-title>
+                  <cl-alert-dialog-description>The sheet leaves the press.</cl-alert-dialog-description>
+                  <cl-alert-dialog-close><button type="button">Keep it</button></cl-alert-dialog-close>
+                </cl-alert-dialog-content>
+              </cl-alert-dialog>
+              <cl-drawer>
+                <cl-drawer-trigger><button type="button">Open drawer</button></cl-drawer-trigger>
+                <cl-drawer-backdrop hidden></cl-drawer-backdrop>
+                <cl-drawer-content hidden>
+                  <cl-drawer-title>Drawer</cl-drawer-title>
+                  <cl-drawer-description>Notes slide in from the edge.</cl-drawer-description>
+                  <cl-drawer-close><button type="button">Close drawer</button></cl-drawer-close>
+                </cl-drawer-content>
+              </cl-drawer>
+              <cl-popover>
+                <cl-popover-trigger><button type="button" id="open-popover">Open popover</button></cl-popover-trigger>
+                <cl-popover-content hidden>
+                  <cl-popover-title>Callout</cl-popover-title>
+                  <cl-popover-description>Pinned under the trigger.</cl-popover-description>
+                  <cl-popover-close><button type="button">Close popover</button></cl-popover-close>
+                </cl-popover-content>
+              </cl-popover>
+              <cl-hover-card>
+                <cl-hover-card-trigger><a href="#overlays">Hover the mark</a></cl-hover-card-trigger>
+                <cl-hover-card-content hidden>Eight-point star, plate mark.</cl-hover-card-content>
+              </cl-hover-card>
+              <cl-menu>
+                <cl-menu-trigger><button type="button" id="open-menu">Open menu</button></cl-menu-trigger>
+                <cl-menu-content hidden>
+                  <cl-menu-item value="file">File the plate</cl-menu-item>
+                  <cl-menu-separator></cl-menu-separator>
+                  <cl-menu-item value="scrap">Scrap it</cl-menu-item>
+                </cl-menu-content>
+              </cl-menu>
+            </div>
+            <cl-menubar aria-label="Plate menus">
+              <cl-menu>
+                <cl-menu-trigger><button type="button">File</button></cl-menu-trigger>
+                <cl-menu-content hidden>
+                  <cl-menu-item value="new">New sheet</cl-menu-item>
+                </cl-menu-content>
+              </cl-menu>
+            </cl-menubar>
+            <cl-trigger-menu>
+              <cl-trigger-menu-input><textarea aria-label="Command line" rows="2"></textarea></cl-trigger-menu-input>
+              <cl-trigger-menu-content hidden>
+                <cl-trigger-menu-item value="star">Insert star</cl-trigger-menu-item>
+                <cl-trigger-menu-item value="seal">Insert seal</cl-trigger-menu-item>
+              </cl-trigger-menu-content>
+            </cl-trigger-menu>
+            <cl-button><button type="button" id="post-note">Post a note</button></cl-button>
+            <cl-toast-region></cl-toast-region>
+            <cl-command aria-label="Command palette">
+              <cl-command-input><input aria-label="Command search" placeholder="Search the plate" /></cl-command-input>
+              <cl-command-list>
+                <cl-command-item value="gallery">Open gallery</cl-command-item>
+                <cl-command-item value="sheet">Open sheet</cl-command-item>
+              </cl-command-list>
+              <cl-command-empty hidden>No match</cl-command-empty>
+            </cl-command>
+          </section>
+          <section class="specimen">
+            <h2>07 · Layout</h2>
+            <cl-accordion>
+              <cl-accordion-item value="ink">
+                <cl-accordion-header><h3><cl-accordion-trigger><button type="button">Ink</button></cl-accordion-trigger></h3></cl-accordion-header>
+                <cl-accordion-panel>Near-black, one orange.</cl-accordion-panel>
+              </cl-accordion-item>
+              <cl-accordion-item value="paper">
+                <cl-accordion-header><h3><cl-accordion-trigger><button type="button">Paper</button></cl-accordion-trigger></h3></cl-accordion-header>
+                <cl-accordion-panel>Warm sheet, #d9d7d2.</cl-accordion-panel>
+              </cl-accordion-item>
+            </cl-accordion>
+            <cl-collapsible>
+              <cl-collapsible-trigger><button type="button">Fine print</button></cl-collapsible-trigger>
+              <cl-collapsible-panel hidden>Hairline rules and the footer.</cl-collapsible-panel>
+            </cl-collapsible>
+            <cl-separator></cl-separator>
+            <cl-scroll-area>
+              <cl-scroll-area-viewport>
+                <cl-scroll-area-content>
+                  <p>Line 01 of the change list.</p>
+                  <p>Line 02 of the change list.</p>
+                  <p>Line 03 of the change list.</p>
+                  <p>Line 04 of the change list.</p>
+                  <p>Line 05 of the change list.</p>
+                  <p>Line 06 of the change list.</p>
+                </cl-scroll-area-content>
+              </cl-scroll-area-viewport>
+              <cl-scroll-area-scrollbar orientation="vertical"><cl-scroll-area-thumb></cl-scroll-area-thumb></cl-scroll-area-scrollbar>
+            </cl-scroll-area>
+            <cl-resizable>
+              <cl-resizable-panel id="left">Left plate</cl-resizable-panel>
+              <cl-resizable-handle aria-label="Resize panels"></cl-resizable-handle>
+              <cl-resizable-panel id="right">Right plate</cl-resizable-panel>
+            </cl-resizable>
+            <cl-card label="Specimen card">
+              <cl-avatar><cl-avatar-fallback>CU</cl-avatar-fallback></cl-avatar>
+              <p>A sheet panel for a short note.</p>
+            </cl-card>
+            <cl-progress aria-label="Press" value="60"><cl-progress-track><cl-progress-indicator></cl-progress-indicator></cl-progress-track></cl-progress>
+            <cl-meter aria-label="Ink level" value="40"><cl-meter-track><cl-meter-indicator></cl-meter-indicator></cl-meter-track></cl-meter>
+            <cl-alert>The plate is on the press.</cl-alert>
+            <cl-spinner label="Pulling a proof"></cl-spinner>
+            <cl-skeleton></cl-skeleton>
+          </section>
+          <section class="specimen">
+            <h2>08 · Navigation and dates</h2>
+            <cl-breadcrumb label="Sheets">
+              <cl-breadcrumb-item><a href="./">Release</a></cl-breadcrumb-item>
+              <cl-breadcrumb-item>Gallery</cl-breadcrumb-item>
+            </cl-breadcrumb>
+            <cl-pagination page-count="3" aria-label="Gallery pages">
+              <cl-pagination-list>
+                <cl-pagination-item><cl-pagination-previous><button type="button">Prev</button></cl-pagination-previous></cl-pagination-item>
+                <cl-pagination-item><cl-pagination-link page="1"><button type="button">1</button></cl-pagination-link></cl-pagination-item>
+                <cl-pagination-item><cl-pagination-link page="2"><button type="button">2</button></cl-pagination-link></cl-pagination-item>
+                <cl-pagination-item><cl-pagination-link page="3"><button type="button">3</button></cl-pagination-link></cl-pagination-item>
+                <cl-pagination-item><cl-pagination-next><button type="button">Next</button></cl-pagination-next></cl-pagination-item>
+              </cl-pagination-list>
+            </cl-pagination>
+            <cl-navigation-menu aria-label="Kit map">
+              <cl-navigation-menu-list>
+                <cl-navigation-menu-item>
+                  <cl-navigation-menu-trigger><button type="button">Parts</button></cl-navigation-menu-trigger>
+                  <cl-navigation-menu-content hidden>
+                    <cl-navigation-menu-link><a href="#forms">Forms</a></cl-navigation-menu-link>
+                  </cl-navigation-menu-content>
+                </cl-navigation-menu-item>
+              </cl-navigation-menu-list>
+            </cl-navigation-menu>
+            <cl-toolbar aria-label="Plate tools">
+              <cl-toolbar-button><button type="button">Rule</button></cl-toolbar-button>
+              <cl-toolbar-separator></cl-toolbar-separator>
+              <cl-toolbar-button><button type="button">Star</button></cl-toolbar-button>
+            </cl-toolbar>
+            <cl-calendar aria-label="Press calendar">
+              <cl-calendar-heading data-cl-heading></cl-calendar-heading>
+              <div class="row">
+                <cl-calendar-previous><button type="button">Previous month</button></cl-calendar-previous>
+                <cl-calendar-next><button type="button">Next month</button></cl-calendar-next>
+              </div>
+              <cl-calendar-grid>
+                <cl-calendar-weekdays data-cl-weekdays></cl-calendar-weekdays>
+                <div data-cl-weeks></div>
+              </cl-calendar-grid>
+            </cl-calendar>
+            <cl-date-picker>
+              <cl-date-picker-trigger><button type="button">Choose date</button></cl-date-picker-trigger>
+              <cl-date-picker-content hidden>
+                <div data-cl-heading></div>
+                <div class="row">
+                  <cl-calendar-previous><button type="button">Previous month</button></cl-calendar-previous>
+                  <cl-calendar-next><button type="button">Next month</button></cl-calendar-next>
+                </div>
+                <cl-calendar-grid>
+                  <cl-calendar-weekdays data-cl-weekdays></cl-calendar-weekdays>
+                  <div data-cl-weeks></div>
+                </cl-calendar-grid>
+              </cl-date-picker-content>
+            </cl-date-picker>
+            <cl-date-input aria-label="Issue date"></cl-date-input>
+            <cl-time-input aria-label="Press time"></cl-time-input>
+          </section>
+        </div>
+      </cl-sheet>
+    </div>
+    <script type="module" src="./main.ts"></script>
+    <script type="module">
+      import { toast } from "../src/index.ts";
+      document.querySelector("#mark-button")?.addEventListener("click", () => {
+        const log = document.querySelector("#mark-log");
+        if (log) log.textContent = "Plate marked";
+      });
+      document.querySelector("#post-note")?.addEventListener("click", () => {
+        toast({ title: "Filed", description: "The plate note is on the sheet." });
+      });
+    </script>
+  </body>
+</html>

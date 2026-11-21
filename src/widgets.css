@@ -1,0 +1,446 @@
+/* Plate treatment for the SDK widgets. Unlayered, so it wins over @layer ui-sdk. */
+
+:is(
+  cl-checkbox,
+  cl-radio,
+  cl-switch,
+  cl-slider,
+  cl-select,
+  cl-combobox,
+  cl-autocomplete,
+  cl-listbox,
+  cl-number-input,
+  cl-password-input,
+  cl-otp-input,
+  cl-file-input,
+  cl-rating,
+  cl-accordion,
+  cl-collapsible,
+  cl-scroll-area,
+  cl-progress,
+  cl-meter,
+  cl-calendar,
+  cl-date-picker,
+  cl-date-input,
+  cl-time-input,
+  cl-command,
+  cl-pagination,
+  cl-navigation-menu,
+  cl-toolbar,
+  cl-menubar
+) {
+  font-family: var(--cl-font-mono);
+  font-size: var(--cl-text-xs);
+  letter-spacing: 0.04em;
+}
+
+cl-checkbox,
+cl-radio,
+cl-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+}
+
+cl-checkbox,
+cl-radio {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--cl-ink);
+  background: transparent;
+  color: var(--cl-ink);
+}
+
+cl-checkbox {
+  border-radius: 0;
+}
+
+cl-radio {
+  border-radius: 999px;
+}
+
+cl-checkbox[data-checked],
+cl-checkbox[aria-checked="true"],
+cl-radio[data-checked],
+cl-radio[aria-checked="true"] {
+  background: var(--cl-orange);
+  border-color: var(--cl-orange);
+  color: var(--cl-ink);
+}
+
+cl-checkbox-indicator,
+cl-radio-indicator {
+  width: 0.45rem;
+  height: 0.45rem;
+  background: currentColor;
+}
+
+cl-radio-indicator {
+  border-radius: 999px;
+}
+
+cl-switch {
+  width: 2.5rem;
+  height: 1.35rem;
+  padding: 2px;
+  border: 1px solid var(--cl-ink);
+  background: transparent;
+}
+
+cl-switch-thumb {
+  width: 0.9rem;
+  height: 0.9rem;
+  background: var(--cl-ink);
+}
+
+cl-switch[data-checked] cl-switch-thumb,
+cl-switch[aria-checked="true"] cl-switch-thumb {
+  margin-left: auto;
+  background: var(--cl-orange);
+}
+
+cl-checkbox-group,
+cl-radio-group,
+cl-segmented-control,
+cl-rating,
+cl-otp-input,
+cl-toolbar,
+cl-menubar,
+cl-pagination-list,
+cl-navigation-menu-list,
+cl-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+cl-segmented-control-item,
+cl-rating-item,
+cl-pagination-link,
+cl-pagination-previous,
+cl-pagination-next,
+cl-toolbar-button,
+cl-menu-item,
+cl-select-item,
+cl-combobox-item,
+cl-autocomplete-item,
+cl-listbox-item,
+cl-command-item,
+cl-trigger-menu-item,
+cl-navigation-menu-trigger,
+cl-accordion-trigger,
+cl-collapsible-trigger {
+  font-family: var(--cl-font-mono);
+  font-size: var(--cl-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+cl-segmented-control {
+  border: 1px solid var(--cl-ink);
+  padding: 2px;
+}
+
+cl-segmented-control-item[data-checked],
+cl-segmented-control-item[aria-checked="true"],
+cl-listbox-item[data-selected],
+cl-listbox-item[aria-selected="true"],
+cl-command-item[data-selected],
+cl-menu-item[data-highlighted],
+cl-select-item[data-highlighted],
+cl-combobox-item[data-highlighted],
+cl-pagination-link[data-current] {
+  background: var(--cl-ink);
+  color: var(--cl-on-ink);
+}
+
+cl-slider {
+  display: grid;
+  gap: 0.35rem;
+}
+
+cl-slider-control {
+  display: block;
+}
+
+cl-slider-track {
+  position: relative;
+  display: block;
+  height: 1px;
+  background: var(--cl-ink);
+}
+
+cl-slider-thumb {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1px solid var(--cl-ink);
+  background: var(--cl-orange);
+}
+
+cl-number-input-group,
+cl-password-input,
+cl-date-input,
+cl-time-input,
+cl-otp-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-bottom: 1px solid var(--cl-ink);
+}
+
+cl-number-input-control,
+cl-password-input input {
+  flex: 1;
+  min-width: 0;
+}
+
+cl-number-input-control input,
+cl-password-input input,
+cl-combobox-input input,
+cl-autocomplete-input input,
+cl-command-input input,
+cl-trigger-menu-input textarea,
+cl-trigger-menu-input input,
+cl-date-input-segment input,
+cl-time-input-segment input,
+cl-otp-input-control input,
+textarea[data-slot="textarea"] {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-family: var(--cl-font-mono);
+  font-size: 0.92rem;
+}
+
+cl-file-input > input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+cl-file-input-dropzone {
+  border: 1px dashed var(--cl-ink);
+  padding: 0.7rem;
+}
+
+:is(
+  cl-select-content,
+  cl-combobox-content,
+  cl-autocomplete-content,
+  cl-popover-content,
+  cl-hover-card-content,
+  cl-menu-content,
+  cl-menu-sub-content,
+  cl-trigger-menu-content,
+  cl-navigation-menu-content,
+  cl-date-picker-content,
+  cl-alert-dialog-content,
+  cl-drawer-content,
+  cl-toast
+) {
+  border: 1px solid var(--cl-ink);
+  border-radius: 0;
+  background: var(--cl-paper);
+  color: var(--cl-ink);
+  box-shadow: none;
+  padding: 0.6rem;
+  z-index: 60;
+}
+
+cl-alert-dialog-title,
+cl-drawer-title,
+cl-popover-title,
+cl-dialog-title {
+  margin: 0;
+  font-family: var(--cl-font-display);
+  font-size: 1.2rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+cl-toast-region {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: grid;
+  gap: 0.4rem;
+  z-index: 70;
+}
+
+cl-accordion-item,
+cl-collapsible {
+  border-top: 1px solid var(--cl-ink);
+}
+
+cl-accordion-panel,
+cl-collapsible-panel {
+  padding: 0.4rem 0 0.7rem;
+}
+
+cl-separator,
+cl-menu-separator,
+cl-toolbar-separator {
+  border: 0;
+  border-top: 1px solid var(--cl-ink);
+  height: 0;
+}
+
+cl-toolbar-separator,
+cl-menu-separator {
+  border-top: 0;
+  border-left: 1px solid var(--cl-ink);
+  width: 0;
+  align-self: stretch;
+}
+
+cl-scroll-area {
+  max-height: 8rem;
+}
+
+cl-scroll-area-viewport {
+  max-height: 8rem;
+  overflow: auto;
+}
+
+cl-resizable {
+  display: flex;
+  min-height: 6rem;
+  border: 1px solid var(--cl-ink);
+}
+
+cl-resizable-panel {
+  min-width: 4rem;
+  padding: 0.5rem;
+}
+
+cl-resizable-handle {
+  width: 6px;
+  background: var(--cl-ink);
+  cursor: col-resize;
+}
+
+cl-avatar {
+  display: inline-grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--cl-ink);
+  background: var(--cl-ink);
+  color: var(--cl-on-ink);
+  font-family: var(--cl-font-mono);
+  font-size: var(--cl-text-2xs);
+}
+
+cl-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+cl-progress,
+cl-meter {
+  display: grid;
+  gap: 0.3rem;
+}
+
+cl-progress-track,
+cl-meter-track {
+  height: 4px;
+  background: transparent;
+  border: 1px solid var(--cl-ink);
+}
+
+cl-progress-indicator,
+cl-meter-indicator {
+  height: 100%;
+  background: var(--cl-orange);
+  transform-origin: left center;
+}
+
+cl-card {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.9rem;
+  border: 1px solid var(--cl-ink);
+  background: var(--cl-paper);
+}
+
+cl-alert {
+  padding: 0.55rem 0.7rem;
+  border-left: 3px solid var(--cl-orange);
+  font-family: var(--cl-font-mono);
+  font-size: var(--cl-text-xs);
+}
+
+cl-spinner {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid var(--cl-ink);
+  border-top-color: var(--cl-orange);
+  animation: cl-spin 0.8s linear infinite;
+}
+
+cl-skeleton {
+  display: block;
+  height: 0.8rem;
+  background: linear-gradient(90deg, transparent, var(--cl-hairline, #b9b4ac), transparent);
+}
+
+cl-breadcrumb {
+  font-family: var(--cl-font-mono);
+  font-size: var(--cl-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+cl-breadcrumb-item:not(:last-child)::after {
+  content: "/";
+  margin-left: 0.45rem;
+}
+
+cl-calendar,
+cl-date-picker-content {
+  display: grid;
+  gap: 0.4rem;
+}
+
+cl-calendar-grid,
+cl-calendar-weekdays,
+cl-calendar-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1.8rem);
+  gap: 0.15rem;
+}
+
+cl-calendar-day,
+cl-calendar-weekday {
+  display: grid;
+  place-items: center;
+  min-height: 1.6rem;
+  font-family: var(--cl-font-mono);
+  font-size: var(--cl-text-2xs);
+}
+
+cl-calendar-day[data-selected],
+cl-calendar-day[aria-selected="true"] {
+  background: var(--cl-orange);
+  color: var(--cl-ink);
+}
+
+cl-rating-item[data-filled] {
+  color: var(--cl-orange);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  cl-spinner {
+    animation: none;
+  }
+}

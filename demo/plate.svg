@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="Dimensioned plate of an eight-point star">
+  <rect width="1200" height="520" fill="#cfcbc4"/>
+  <g stroke="#1c1b19" stroke-width="1" opacity="0.28" fill="none">
+    <path d="M40 40 H1160 M40 120 H1160 M40 200 H1160 M40 280 H1160 M40 360 H1160 M40 440 H1160"/>
+    <path d="M80 20 V500 M200 20 V500 M320 20 V500 M440 20 V500 M560 20 V500 M680 20 V500 M800 20 V500 M920 20 V500 M1040 20 V500"/>
+  </g>
+  <g fill="none" stroke="#1c1b19" stroke-width="1.25">
+    <circle cx="250" cy="168" r="54"/>
+    <circle cx="250" cy="168" r="34"/>
+    <path d="M250 98 V238 M180 168 H320"/>
+    <path d="M90 400 H430"/>
+    <path d="M90 392 V408 M430 392 V408"/>
+    <path d="M90 400 H118 M402 400 H430"/>
+    <path d="M150 430 H250" stroke-width="1"/>
+    <path d="M150 424 V436 M250 424 V436"/>
+  </g>
+  <text x="168" y="428" fill="#1c1b19" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" letter-spacing="1.5">120</text>
+  <text x="236" y="392" fill="#1c1b19" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" letter-spacing="1.5">Ø 108</text>
+  <g transform="translate(690 230)">
+    <polygon fill="#d97757" points="0,-92 22,-22 92,0 22,22 0,92 -22,22 -92,0 -22,-22"/>
+    <polygon fill="#1c1b19" points="0,-46 11,-11 46,0 11,11 0,46 -11,11 -46,0 -11,-11"/>
+  </g>
+  <g stroke="#1c1b19" fill="none" stroke-width="1.25">
+    <path d="M1040 70 H1120 V150"/>
+    <path d="M1040 62 V78 M1120 62 V78 M1112 150 H1128 M1112 70 H1128"/>
+    <circle cx="1080" cy="110" r="10"/>
+  </g>
+  <g fill="#1c1b19" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12" letter-spacing="1.6">
+    <text x="78" y="70">PLATE RM-01</text>
+    <text x="78" y="90">SCALE 1 : 1</text>
+    <text x="78" y="110">INK / ORANGE</text>
+  </g>
+</svg>
