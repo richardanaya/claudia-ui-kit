@@ -66,6 +66,11 @@ createParts(dateInput, {
     tag: "cl-date-input-segment",
     display: "block",
     target: (el: HTMLElement) => el.querySelector("input") ?? el,
+    context: (el: HTMLElement) => {
+      const key = el.getAttribute("segment") ?? "";
+      return { segment: { key }, id: key };
+    },
+    rebind: ["segment"],
   },
 });
 
@@ -80,5 +85,10 @@ createParts(timeInput, {
     tag: "cl-time-input-segment",
     display: "block",
     target: (el: HTMLElement) => el.querySelector("input") ?? el,
+    context: (el: HTMLElement) => {
+      const key = el.getAttribute("segment") ?? "";
+      return { segment: { key }, id: key };
+    },
+    rebind: ["segment"],
   },
 });

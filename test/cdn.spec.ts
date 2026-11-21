@@ -1,4 +1,8 @@
+import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
+
+const version = JSON.parse(readFileSync("package.json", "utf8")).version as string;
+const banner = `/*! Claudia UI Kit v${version} · MIT License · (c) 2026 Richard Anaya */`;
 
 test.use({ baseURL: "http://127.0.0.1:4174" });
 
@@ -24,11 +28,16 @@ test("the CDN page renders from the built files alone", async ({ page }) => {
   expect(scripts.some(path => path.includes("/node_modules/") || path.includes("/@fs/"))).toBe(false);
   expect(errors).toEqual([]);
 
-  const version = await page.request.get("/cdn/v0.1.0/claudia-ui.js");
-  expect(version.ok()).toBe(true);
+  const versioned = await page.request.get(`/cdn/v${version}/claudia-ui.js`);
+  expect(versioned.ok()).toBe(true);
+  expect((await versioned.text()).startsWith(banner)).toBe(true);
+  const js = await page.request.get("/cdn/claudia-ui.js");
+  expect((await js.text()).startsWith(banner)).toBe(true);
   const css = await page.request.get("/cdn/claudia-ui.css");
   expect(css.ok()).toBe(true);
-  expect(await css.text()).toContain("--cl-paper");
+  const cssText = await css.text();
+  expect(cssText.startsWith(banner)).toBe(true);
+  expect(cssText).toContain("--cl-paper");
   const map = await page.request.get("/cdn/claudia-ui.js.map");
   expect(map.ok()).toBe(true);
 });

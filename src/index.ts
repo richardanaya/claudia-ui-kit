@@ -1,4 +1,7 @@
 import "./register.js";
+import { watchConcealedLabels } from "./conceal.js";
+
+if (typeof document !== "undefined") watchConcealedLabels();
 
 export { UI_SDK_VERSION, components, type ComponentTag } from "./catalog.js";
 export {

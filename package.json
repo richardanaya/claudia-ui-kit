@@ -65,6 +65,7 @@
   "engines": {
     "node": ">=22"
   },
+  "author": "Richard Anaya",
   "license": "MIT",
   "repository": {
     "type": "git",
