@@ -6,6 +6,7 @@ import { tabs } from "@ui-sdk/core/tabs";
 import { toggle, toggleGroup, type ToggleGroupApi } from "@ui-sdk/core/toggle";
 import { tooltip } from "@ui-sdk/core/tooltip";
 import { createParts, wrappedButton, wrappedChild } from "@ui-sdk/web";
+import { followAnchor } from "./anchor.js";
 import "./forms.js";
 import "./overlays.js";
 import "./layout.js";
@@ -136,7 +137,11 @@ createParts(dialog, {
 });
 
 createParts(tooltip, {
-  root: { tag: "cl-tooltip", defaults: { closeOnPress: true } },
+  root: {
+    tag: "cl-tooltip",
+    defaults: { closeOnPress: true },
+    render: (el: HTMLElement) => followAnchor(el, "cl-tooltip-content", "cl-tooltip-trigger"),
+  },
   trigger: {
     tag: "cl-tooltip-trigger",
     display: "contents",
