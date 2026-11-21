@@ -1,5 +1,6 @@
 import { createParts } from "@ui-sdk/web";
 import "./controls.js";
+import { alertBanner, breadcrumb, breadcrumbItem, card, skeleton, spinner } from "./display.js";
 import {
   barcode,
   callout,
@@ -66,3 +67,9 @@ createParts(changeList, {
 createParts(barcode, { root: { tag: "cl-barcode", ...block } });
 createParts(qr, { root: { tag: "cl-qr", ...block } });
 createParts(seal, { root: { tag: "cl-seal", display: "block" } });
+createParts(card, { root: { tag: "cl-card", display: "block" } });
+createParts(breadcrumb, { root: { tag: "cl-breadcrumb", display: "block" } });
+createParts(breadcrumbItem, { root: { tag: "cl-breadcrumb-item", display: "block" } });
+createParts(alertBanner, { root: { tag: "cl-alert", display: "block" } });
+createParts(spinner, { root: { tag: "cl-spinner", display: "block" } });
+createParts(skeleton, { root: { tag: "cl-skeleton", display: "block" } });

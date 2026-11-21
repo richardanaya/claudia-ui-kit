@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claudia UI Kit — press desk</title>
+  </head>
+  <body>
+    <div class="page">
+      <nav class="nav" aria-label="Sheets">
+        <a href="./">Fig. 00 · Release sheet</a>
+        <a href="./gallery.html">Fig. 01 · Gallery</a>
+        <a href="./app.html" aria-current="page">Fig. 02 · App</a>
+      </nav>
+      <cl-sheet label="Press desk">
+        <cl-crosshair corner="nw"></cl-crosshair>
+        <cl-crosshair corner="ne"></cl-crosshair>
+        <cl-crosshair corner="sw"></cl-crosshair>
+        <cl-crosshair corner="se"></cl-crosshair>
+        <cl-sheet-margin side="start">App · press desk</cl-sheet-margin>
+        <cl-sheet-margin side="end">Rev. 0.1.0</cl-sheet-margin>
+        <header class="mast">
+          <h1 class="brand"><cl-star></cl-star> Press desk</h1>
+          <p class="kicker">Settings<br />A plate, in use</p>
+          <cl-sheet-meta number="003" sheet="1" of="1" revision="0.1.0" date="2026-11-21"></cl-sheet-meta>
+        </header>
+        <cl-ruler from="0" to="12"></cl-ruler>
+        <div class="stack">
+          <cl-breadcrumb label="Desk">
+            <cl-breadcrumb-item><a href="./">Kit</a></cl-breadcrumb-item>
+            <cl-breadcrumb-item>Press desk</cl-breadcrumb-item>
+          </cl-breadcrumb>
+          <cl-toolbar aria-label="Desk tools">
+            <cl-toolbar-button><button type="button">Proof</button></cl-toolbar-button>
+            <cl-toolbar-separator></cl-toolbar-separator>
+            <cl-toolbar-button><button type="button">File</button></cl-toolbar-button>
+            <cl-toolbar-input><input aria-label="Find a sheet" placeholder="Find a sheet" /></cl-toolbar-input>
+          </cl-toolbar>
+          <cl-alert id="desk-alert">Desk is live. Orange stays on the stars.</cl-alert>
+          <div class="row">
+            <cl-card label="Operator">
+              <cl-avatar><cl-avatar-fallback>CU</cl-avatar-fallback></cl-avatar>
+              <cl-field>
+                <cl-field-label>Operator</cl-field-label>
+                <cl-input><input name="operator" value="Claudia" autocomplete="off" /></cl-input>
+              </cl-field>
+              <cl-field>
+                <cl-field-label>Passphrase</cl-field-label>
+                <cl-password-input>
+                  <input type="password" aria-label="Desk passphrase" value="ink" />
+                  <cl-password-input-toggle><button type="button">Show passphrase</button></cl-password-input-toggle>
+                </cl-password-input>
+              </cl-field>
+              <label>Night shift <cl-switch id="night-shift" aria-label="Night shift"><cl-switch-thumb></cl-switch-thumb></cl-switch></label>
+            </cl-card>
+            <cl-card label="Press">
+              <cl-segmented-control id="finish" aria-label="Finish" value="matte">
+                <cl-segmented-control-item value="matte">Matte</cl-segmented-control-item>
+                <cl-segmented-control-item value="gloss">Gloss</cl-segmented-control-item>
+              </cl-segmented-control>
+              <cl-select id="paper" aria-label="Paper stock">
+                <cl-select-trigger><button type="button"><cl-select-value>Warm</cl-select-value></button></cl-select-trigger>
+                <cl-select-content hidden>
+                  <cl-select-item value="warm">Warm</cl-select-item>
+                  <cl-select-item value="cool">Cool</cl-select-item>
+                </cl-select-content>
+              </cl-select>
+              <cl-slider id="contrast" aria-label="Contrast" default-value="55">
+                <cl-slider-control>
+                  <cl-slider-track>
+                    <cl-slider-indicator></cl-slider-indicator>
+                    <cl-slider-thumb></cl-slider-thumb>
+                  </cl-slider-track>
+                </cl-slider-control>
+              </cl-slider>
+              <cl-number-input id="copies" aria-label="Copies" value="12">
+                <cl-number-input-group>
+                  <cl-number-input-decrement><button type="button" aria-label="Fewer copies">−</button></cl-number-input-decrement>
+                  <cl-number-input-control><input aria-label="Copies" /></cl-number-input-control>
+                  <cl-number-input-increment><button type="button" aria-label="More copies">+</button></cl-number-input-increment>
+                </cl-number-input-group>
+              </cl-number-input>
+              <cl-progress aria-label="Run" value="70"><cl-progress-track><cl-progress-indicator></cl-progress-indicator></cl-progress-track></cl-progress>
+              <cl-meter aria-label="Ink" value="35"><cl-meter-track><cl-meter-indicator></cl-meter-indicator></cl-meter-track></cl-meter>
+            </cl-card>
+          </div>
+          <cl-accordion>
+            <cl-accordion-item value="notes">
+              <cl-accordion-header>
+                <h2><cl-accordion-trigger><button type="button">Run notes</button></cl-accordion-trigger></h2>
+              </cl-accordion-header>
+              <cl-accordion-panel>
+                <cl-textarea><textarea aria-label="Run notes" rows="3">Keep the hairline. Do not flood the orange.</textarea></cl-textarea>
+              </cl-accordion-panel>
+            </cl-accordion-item>
+          </cl-accordion>
+          <cl-pagination id="desk-pages" page-count="3" aria-label="Desk pages">
+            <cl-pagination-list>
+              <cl-pagination-item><cl-pagination-previous><button type="button">Previous page</button></cl-pagination-previous></cl-pagination-item>
+              <cl-pagination-item><cl-pagination-link page="1"><button type="button">Page 1</button></cl-pagination-link></cl-pagination-item>
+              <cl-pagination-item><cl-pagination-link page="2"><button type="button">Page 2</button></cl-pagination-link></cl-pagination-item>
+              <cl-pagination-item><cl-pagination-link page="3"><button type="button">Page 3</button></cl-pagination-link></cl-pagination-item>
+              <cl-pagination-item><cl-pagination-next><button type="button">Next page</button></cl-pagination-next></cl-pagination-item>
+            </cl-pagination-list>
+          </cl-pagination>
+          <p class="log" id="desk-log" aria-live="polite"></p>
+        </div>
+      </cl-sheet>
+    </div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

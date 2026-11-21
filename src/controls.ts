@@ -6,6 +6,11 @@ import { tabs } from "@ui-sdk/core/tabs";
 import { toggle, toggleGroup, type ToggleGroupApi } from "@ui-sdk/core/toggle";
 import { tooltip } from "@ui-sdk/core/tooltip";
 import { createParts, wrappedButton, wrappedChild } from "@ui-sdk/web";
+import "./forms.js";
+import "./overlays.js";
+import "./layout.js";
+import "./nav.js";
+import "./dates.js";
 
 // `instanceOf` is not exported, and a second copy of the adapter cannot see
 // the group. The owner render hook is the public way to keep the full api,

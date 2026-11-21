@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claudia UI Kit — CDN</title>
+    <link rel="stylesheet" href="./cdn/claudia-ui.css" />
+  </head>
+  <body>
+    <main style="max-width: 36rem; margin: 2rem auto; padding: 1rem">
+      <h1>CDN plate</h1>
+      <cl-button>
+        <button type="button" data-variant="orange" id="cdn-mark">Mark</button>
+      </cl-button>
+      <cl-field>
+        <cl-field-label>Title</cl-field-label>
+        <cl-input>
+          <input id="cdn-title" aria-label="Title" />
+        </cl-input>
+      </cl-field>
+      <label>
+        <cl-checkbox id="cdn-star" aria-label="Star">
+          <cl-checkbox-indicator></cl-checkbox-indicator>
+        </cl-checkbox>
+        Star
+      </label>
+      <cl-pill variant="ink">From the CDN</cl-pill>
+      <p id="cdn-log"></p>
+    </main>
+    <script type="module" src="./cdn/claudia-ui.js"></script>
+    <script type="module">
+      document.querySelector("#cdn-mark")?.addEventListener("click", () => {
+        const log = document.querySelector("#cdn-log");
+        if (log) log.textContent = "Marked from the CDN";
+      });
+    </script>
+  </body>
+</html>

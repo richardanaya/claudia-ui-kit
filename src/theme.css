@@ -2,6 +2,7 @@
 
 @import "@ui-sdk/core/web.css";
 @import "./tokens.css";
+@import "./widgets.css";
 
 body {
   margin: 0;
