@@ -1,5 +1,16 @@
 /* Plate treatment for the SDK widgets. Unlayered, so it wins over @layer ui-sdk. */
 
+:where([data-slot]) {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+}
+
+:where(input, textarea, select) {
+  max-width: 100%;
+  min-width: 0;
+}
+
 :is(
   cl-checkbox,
   cl-radio,
@@ -105,15 +116,22 @@ cl-radio-group,
 cl-segmented-control,
 cl-rating,
 cl-otp-input,
+cl-otp-input-group,
 cl-toolbar,
 cl-menubar,
+cl-pagination,
 cl-pagination-list,
+cl-navigation-menu,
 cl-navigation-menu-list,
-cl-breadcrumb {
+cl-breadcrumb,
+cl-toast {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 cl-segmented-control-item,
@@ -179,21 +197,61 @@ cl-slider-thumb {
   background: var(--cl-orange);
 }
 
+cl-number-input,
+cl-number-input-group,
+cl-password-input,
+cl-date-input,
+cl-time-input,
+cl-textarea,
+cl-listbox,
+cl-select,
+cl-combobox,
+cl-autocomplete,
+cl-file-input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+cl-command {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 cl-number-input-group,
 cl-password-input,
 cl-date-input,
 cl-time-input,
 cl-otp-input-group {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem;
   border-bottom: 1px solid var(--cl-ink);
 }
 
+cl-number-input-group {
+  flex-wrap: nowrap;
+}
+
 cl-number-input-control,
-cl-password-input input {
-  flex: 1;
+cl-password-input input,
+cl-number-input-group input {
+  flex: 1 1 auto;
+  width: auto;
   min-width: 0;
+  max-width: 100%;
+}
+
+cl-number-input-group > button,
+cl-password-input > button {
+  flex: 0 0 auto;
+  max-width: 100%;
+  white-space: normal;
 }
 
 cl-number-input-control input,
@@ -241,8 +299,12 @@ cl-file-input-dropzone {
   cl-date-picker-content,
   cl-alert-dialog-content,
   cl-drawer-content,
+  cl-dialog-content,
   cl-toast
 ) {
+  box-sizing: border-box;
+  max-width: calc(100vw - 1rem);
+  min-width: 0;
   border: 1px solid var(--cl-ink);
   border-radius: 0;
   background: var(--cl-paper);
@@ -250,6 +312,7 @@ cl-file-input-dropzone {
   box-shadow: none;
   padding: 0.6rem;
   z-index: 60;
+  overflow-wrap: anywhere;
 }
 
 cl-alert-dialog-title,
@@ -266,11 +329,34 @@ cl-dialog-title {
 
 cl-toast-region {
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
+  inset: auto 0.5rem 0.5rem 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  width: auto;
+  max-width: calc(100vw - 1rem);
+  margin: 0;
   display: grid;
   gap: 0.4rem;
   z-index: 70;
+}
+
+cl-toast-title,
+cl-toast-description,
+cl-command-item,
+cl-command-input,
+cl-listbox-item,
+cl-menu-item,
+cl-menubar {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+:is(cl-pagination, cl-toolbar, cl-menubar, cl-command, cl-toast, cl-select, cl-number-input, cl-password-input)
+  :is(button, [role="menuitem"], [role="option"]) {
+  max-width: 100%;
+  white-space: normal;
 }
 
 cl-accordion-item,
@@ -412,12 +498,22 @@ cl-date-picker-content {
   gap: 0.4rem;
 }
 
+cl-calendar,
+cl-calendar-grid,
+cl-date-picker {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 cl-calendar-grid,
 cl-calendar-weekdays,
 cl-calendar-week {
   display: grid;
-  grid-template-columns: repeat(7, 1.8rem);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 0.15rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 cl-calendar-day,
@@ -437,6 +533,115 @@ cl-calendar-day[aria-selected="true"] {
 
 cl-rating-item[data-filled] {
   color: var(--cl-orange);
+}
+
+@media (max-width: 720px) {
+  :is(
+    button,
+    [role="tab"],
+    [role="menuitem"],
+    [role="option"],
+    cl-segmented-control-item,
+    cl-accordion-trigger,
+    cl-collapsible-trigger,
+    cl-toolbar-button,
+    cl-pagination-link,
+    cl-pagination-previous,
+    cl-pagination-next
+  ) {
+    min-height: 44px;
+  }
+
+  cl-slider-control {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  cl-password-input {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    height: auto;
+    min-height: 0;
+  }
+
+  cl-password-input input,
+  cl-password-input [data-slot="password-input-toggle"] {
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    min-height: 44px;
+    max-width: 100%;
+  }
+
+  cl-number-input button {
+    flex: 0 0 44px;
+    width: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  cl-number-input input {
+    min-height: 44px;
+  }
+
+  cl-pagination-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+    width: 100%;
+  }
+
+  cl-pagination-item:first-child,
+  cl-pagination-item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  cl-pagination button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  cl-calendar-day {
+    min-height: 44px;
+  }
+
+  :is(cl-dialog-content, cl-alert-dialog-content, [data-slot="dialog-content"], [data-slot="alert-dialog-content"]) {
+    position: fixed;
+    inset: auto 0 0 0;
+    top: auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: min(85dvh, calc(100dvh - 0.75rem));
+    margin: 0;
+    border-bottom: 0;
+    overflow-y: auto;
+  }
+
+  cl-drawer-content,
+  [data-slot="drawer-content"] {
+    width: 100%;
+    max-width: calc(100vw - 1rem);
+  }
+
+  [data-slot="drawer-content"]::after {
+    display: none;
+  }
+
+  cl-toolbar input,
+  cl-command input,
+  textarea[data-slot="textarea"] {
+    min-height: 44px;
+  }
+
+  label:has(:is(cl-checkbox, cl-radio, cl-switch)) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    max-width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
